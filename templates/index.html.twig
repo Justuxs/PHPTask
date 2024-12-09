@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Data List</title>
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.10.25/css/jquery.dataTables.min.css">
+</head>
+<body>
+<h1>Data List</h1>
+<a href="{{ path('app_data_import') }}">Import data</a>
+<table id="data-table">
+    <thead>
+    <tr>
+        <th>Transaction ID</th>
+        <th>Tool Number</th>
+        <th>Latitude</th>
+        <th>Longitude</th>
+        <th>Date</th>
+        <th>Battery %</th>
+        <th>Import Date</th>
+    </tr>
+    </thead>
+    <tbody>
+    {% for record in records %}
+        <tr>
+            <td>{{ record.transactionId }}</td>
+            <td>{{ record.toolNumber }}</td>
+            <td>{{ record.latitude }}</td>
+            <td>{{ record.longitude }}</td>
+            <td>{{ record.recordDate ? record.recordDate|date('Y-m-d H:i:s') : '' }}</td>
+            <td>{{ record.batPercentage }}</td>
+            <td>{{ record.importDate ? record.importDate|date('Y-m-d H:i:s') : '' }}</td>
+        </tr>
+    {% endfor %}
+    </tbody>
+</table>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.datatables.net/1.10.25/js/jquery.dataTables.min.js"></script>
+<script>
+    $(document).ready(function() {
+        $('#data-table').DataTable();
+    });
+</script>
+</body>
+</html>
